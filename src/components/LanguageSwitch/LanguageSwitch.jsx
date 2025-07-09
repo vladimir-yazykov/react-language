@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { LanguageContext } from "../../config/context";
+
 const languages = [
   {
     id: "ru",
@@ -13,13 +16,14 @@ const languages = [
   },
 ];
 
-export function LanguageSwitch({ value }) {
+export function LanguageSwitch() {
+  const { language, setLanguage } = useContext(LanguageContext);
   return (
     <div>
-      <select value={value}>
-        {languages.map((language) => (
-          <option key={language.id} value={language.id}>
-            {language.title}
+      <select value={language} onChange={(e) => setLanguage(e.target.value)}>
+        {languages.map((lang) => (
+          <option key={lang.id} value={lang.id}>
+            {lang.title}
           </option>
         ))}
       </select>
